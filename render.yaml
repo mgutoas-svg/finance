@@ -1,0 +1,49 @@
+services:
+  - type: web
+    name: finance-api
+    env: python
+    plan: starter
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port 8000
+    routes:
+      - path: /api/*
+        middlewares: []
+    envVars:
+      - key: DATABASE_URL
+        scope: build
+      - key: DATABASE_URL
+        scope: runtime
+      - key: SECRET_KEY
+        scope: runtime
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: JWT_EXPIRATION_HOURS
+        value: 24
+      - key: REFRESH_TOKEN_EXPIRATION_DAYS
+        value: 7
+      - key: API_HOST
+        value: 0.0.0.0
+      - key: API_PORT
+        value: 8000
+      - key: DEBUG
+        value: "false"
+      - key: CORS_ORIGINS
+        value: https://finance-personal.vercel.app,http://localhost:5173
+      - key: SUPABASE_URL
+        scope: runtime
+      - key: SUPABASE_KEY
+        scope: runtime
+      - key: SMTP_SERVER
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: 587
+      - key: SMTP_EMAIL
+        scope: runtime
+      - key: SMTP_PASSWORD
+        scope: runtime
+      - key: MAX_UPLOAD_SIZE_MB
+        value: 10
+      - key: ALLOWED_FILE_TYPES
+        value: csv,pdf,xlsx
+      - key: LOG_LEVEL
+        value: INFO

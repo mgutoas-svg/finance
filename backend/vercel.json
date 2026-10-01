@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "buildCommand": "pip install -r requirements.txt",
+  "env": {
+    "DATABASE_URL": "@database_url",
+    "SECRET_KEY": "@secret_key",
+    "JWT_ALGORITHM": "HS256",
+    "JWT_EXPIRATION_HOURS": "24",
+    "REFRESH_TOKEN_EXPIRATION_DAYS": "7",
+    "API_HOST": "0.0.0.0",
+    "DEBUG": "false",
+    "CORS_ORIGINS": "@cors_origins",
+    "SUPABASE_URL": "@supabase_url",
+    "SUPABASE_KEY": "@supabase_key",
+    "SMTP_SERVER": "smtp.gmail.com",
+    "SMTP_PORT": "587",
+    "SMTP_EMAIL": "@smtp_email",
+    "SMTP_PASSWORD": "@smtp_password",
+    "MAX_UPLOAD_SIZE_MB": "10",
+    "ALLOWED_FILE_TYPES": "csv,pdf,xlsx",
+    "LOG_LEVEL": "INFO"
+  },
+  "functions": {
+    "backend/app/main.py": {
+      "maxDuration": 30
+    }
+  }
+}
